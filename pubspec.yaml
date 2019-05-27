@@ -1,8 +1,8 @@
 name: flutter_plugin_blueinfo
 description: A new Flutter plugin.
-version: 0.0.1
-author:wangff118
-homepage: https://github.com/wangff118/flutter_plugin_blueinfo
+#version: 0.0.1
+#author:wangff118
+#homepage: https://github.com/wangff118/flutter_plugin_blueinfo
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
