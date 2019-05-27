@@ -13,19 +13,22 @@ import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 import io.flutter.plugin.common.MethodChannel.Result;
 
 /** DeviceInfoPlugin */
-public class BlueInfoPlugin implements MethodCallHandler , RequestPermissionsResultListener  {
+public class BlueInfoPlugin implements MethodCallHandler  {
+
   private final Context context;
   private final BluetoothManager mBluetoothManager;
   private BluetoothAdapter mBluetoothAdapter;
+  private final MethodChannel channel;
+  private final Registrar registrar;
 
 
 
   public static void registerWith(Registrar registrar) {
     final BlueInfoPlugin instance = new BlueInfoPlugin(registrar);
-    registrar.addRequestPermissionsResultListener(instance);
   }
 
   BlueInfoPlugin(Registrar r){
+    this.registrar = r;
     this.channel = new MethodChannel(registrar.messenger(), "blue.gds/blue_info");
     channel.setMethodCallHandler(this);
   }
