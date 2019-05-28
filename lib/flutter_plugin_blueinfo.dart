@@ -3,15 +3,13 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class FlutterPluginBlueinfo {
-
   static const MethodChannel _channel =
       const MethodChannel('blue.gds/blue_info');
 
-  String blueState="";
+  String blueState = "";
 
-  static Future<String> get enableBluetooth async {
-    final String  version = await _channel.invokeMethod('EnableBluetooth');
-    return version;
+  static Future<void> get enableBluetooth async {
+    await _channel.invokeMethod('EnableBluetooth');
   }
 
   static Future<void> get closeBluetooth async {
@@ -19,10 +17,7 @@ class FlutterPluginBlueinfo {
   }
 
   static Future<String> get blueStae async {
-    final  blueState =  await _channel.invokeMethod('getBlueStateInfo');
+    final blueState = await _channel.invokeMethod('getBlueStateInfo');
     return blueState;
   }
-
-  }
-
-
+}
