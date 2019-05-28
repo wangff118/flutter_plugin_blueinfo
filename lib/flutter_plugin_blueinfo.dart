@@ -12,11 +12,11 @@ class FlutterPluginBlueinfo {
 //    final blueState = await _channel.invokeMethod('EnableBluetooth');
 //    return blueState;
 //  }
-//
-//  static Future<String> get closeBluetooth async {
-//    final blueState = await _channel.invokeMethod('CloseBluetooth');
-//    return blueState;
-//  }
+
+  static Future<String> get closeBluetooth async {
+    final blueState = await _channel.invokeMethod('CloseBluetooth');
+    return blueState;
+  }
 
   static Future<String> get blueStae async {
     final blueState = await _channel.invokeMethod('getBlueStateInfo');

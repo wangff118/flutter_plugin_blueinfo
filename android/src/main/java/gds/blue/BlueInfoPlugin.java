@@ -61,7 +61,7 @@ public class BlueInfoPlugin implements MethodCallHandler   {
         }
       }
       if (call.method.equals("CloseBluetooth")) {
-        mBluetoothAdapter.disable();
+          mBluetoothAdapter.disable();
           result.success("isNotOpen");
       }
       else {
