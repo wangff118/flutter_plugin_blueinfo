@@ -11,22 +11,24 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 import io.flutter.plugin.common.MethodChannel.Result;
-
+import android.content.pm.PackageManager;
 
 import android.content.Intent;
 
 /** DeviceInfoPlugin */
-public class BlueInfoPlugin implements MethodCallHandler  {
+public class BlueInfoPlugin implements MethodCallHandler , RequestPermissionsResultListener  {
 
   private final BluetoothManager mBluetoothManager;
   private BluetoothAdapter mBluetoothAdapter;
   private final MethodChannel channel;
   private final Registrar registrar;
+  private static final int REQUEST_COARSE_LOCATION_PERMISSIONS = 1452;
 
 
 
   public static void registerWith(Registrar registrar) {
     final BlueInfoPlugin instance = new BlueInfoPlugin(registrar);
+    registrar.addRequestPermissionsResultListener(instance);
   }
 
   BlueInfoPlugin(Registrar r){
