@@ -15,7 +15,6 @@ import io.flutter.plugin.common.MethodChannel.Result;
 /** DeviceInfoPlugin */
 public class BlueInfoPlugin implements MethodCallHandler  {
 
-  private final Context context;
   private final BluetoothManager mBluetoothManager;
   private BluetoothAdapter mBluetoothAdapter;
   private final MethodChannel channel;
@@ -30,13 +29,13 @@ public class BlueInfoPlugin implements MethodCallHandler  {
   BlueInfoPlugin(Registrar r){
     this.registrar = r;
     this.channel = new MethodChannel(registrar.messenger(), "blue.gds/blue_info");
+    this.mBluetoothManager = (BluetoothManager) r.activity().getSystemService(Context.BLUETOOTH_SERVICE);
+    this.mBluetoothAdapter = mBluetoothManager.getAdapter();
     channel.setMethodCallHandler(this);
   }
 
   @Override
   public void onMethodCall(MethodCall call, Result result) {
-
-    mBluetoothAdapter = mBluetoothManager.getAdapter();
 
     if(mBluetoothAdapter == null && !"isAvailable".equals(call.method)) {
       result.error("bluetooth_unavailable", "the device does not have bluetooth", null);
@@ -52,8 +51,15 @@ public class BlueInfoPlugin implements MethodCallHandler  {
       if (call.method.equals("getBlueStateInfo")) {
           result.success(resultState);
       }
-      if (call.method.equals("getPlatformVersion")) {
-          result.success("Android ${android.os.Build.VERSION.RELEASE}");
+      if (call.method.equals("EnableBluetooth")) {
+        if (!mBluetoothAdapter.isEnabled()) {
+          Intent enableIntent = new Intent(BluetoothAdapter. ACTION_REQUEST_ENABLE);
+          startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+          result.success(enableIntent+"");
+        }
+      }
+      if (call.method.equals("CloseBluetooth")) {
+        mBluetoothAdapter.disable();
       }
       else {
           result.notImplemented();

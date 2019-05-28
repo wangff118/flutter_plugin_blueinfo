@@ -12,7 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   String _blueState = 'Unknown';
 
   @override
@@ -23,14 +22,12 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
     String blueState;
     // Platform messages may fail, so we use a try/catch PlatformException. blueStae
     try {
-      platformVersion = await FlutterPluginBlueinfo.platformVersion;
       blueState= await FlutterPluginBlueinfo.blueStae;
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+
       blueState="Failed";
     }
 
@@ -40,7 +37,6 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
       _blueState = blueState;
     });
   }
@@ -54,7 +50,6 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Row(
             children: [
-               new Text('Running on: $_platformVersion\n'),
                new Text('Running on: $_blueState\n'),
             ],
 
