@@ -22,7 +22,6 @@ public class BlueInfoPlugin implements MethodCallHandler   {
   private BluetoothAdapter mBluetoothAdapter;
   private final MethodChannel channel;
   private final Registrar registrar;
-  private static final int REQUEST_COARSE_LOCATION_PERMISSIONS = 1452;
 
 
 
