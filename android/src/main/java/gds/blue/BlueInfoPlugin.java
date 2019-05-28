@@ -12,6 +12,9 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry.RequestPermissionsResultListener;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+
+import android.content.Intent;
+
 /** DeviceInfoPlugin */
 public class BlueInfoPlugin implements MethodCallHandler  {
 
