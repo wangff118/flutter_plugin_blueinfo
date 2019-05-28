@@ -16,7 +16,7 @@ import android.content.pm.PackageManager;
 import android.content.Intent;
 
 /** DeviceInfoPlugin */
-public class BlueInfoPlugin implements MethodCallHandler , RequestPermissionsResultListener  {
+public class BlueInfoPlugin implements MethodCallHandler   {
 
   private final BluetoothManager mBluetoothManager;
   private BluetoothAdapter mBluetoothAdapter;
@@ -28,7 +28,6 @@ public class BlueInfoPlugin implements MethodCallHandler , RequestPermissionsRes
 
   public static void registerWith(Registrar registrar) {
     final BlueInfoPlugin instance = new BlueInfoPlugin(registrar);
-    registrar.addRequestPermissionsResultListener(instance);
   }
 
   BlueInfoPlugin(Registrar r){
