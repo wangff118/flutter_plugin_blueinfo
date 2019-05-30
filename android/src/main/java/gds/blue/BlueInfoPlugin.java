@@ -58,7 +58,7 @@ public class BlueInfoPlugin implements MethodCallHandler   {
         if (!mBluetoothAdapter.isEnabled()) {
            // mBluetoothAdapter.enable();
           Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-          startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+          startActivityForResult(enableBtIntent,1);
 
           result.success("isOpen");
         }
