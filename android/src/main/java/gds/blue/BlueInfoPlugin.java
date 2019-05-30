@@ -56,8 +56,11 @@ public class BlueInfoPlugin implements MethodCallHandler   {
       }
       if (call.method.equals("EnableBluetooth")) {
         if (!mBluetoothAdapter.isEnabled()) {
-            mBluetoothAdapter.enable();
-            result.success("isOpen");
+           // mBluetoothAdapter.enable();
+          Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+          startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+
+          result.success("isOpen");
         }
       }
       if (call.method.equals("CloseBluetooth")) {
